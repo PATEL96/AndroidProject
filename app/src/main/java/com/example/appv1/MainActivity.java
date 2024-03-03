@@ -40,18 +40,18 @@ public class MainActivity extends AppCompatActivity {
                 Name = userName.getText().toString();
                 Password = userPassword.getText().toString();
 
-//                dh = new DataHandler(getApplicationContext());
-//                Cursor res = dh.Login(Name, Password);
+                dh = new DataHandler(getApplicationContext());
+                Cursor res = dh.Login(Name, Password);
 
-//                if(res.moveToFirst()){
-//                    String test = res.getString(0);
-//                    Toast.makeText(MainActivity.this, "Success", Toast.LENGTH_SHORT).show();
-//                } else {
-//                    Toast.makeText(MainActivity.this, "Success", Toast.LENGTH_SHORT).show();
-//                }
-
-                Intent home = new Intent(MainActivity.this, HomePage.class);
-                startActivity(home);
+                if(res.moveToFirst()){
+                    String test = res.getString(0);
+                    Intent goHome = new Intent(MainActivity.this, HomePage.class);
+                    goHome.putExtra("userName", test);
+                    startActivity(goHome);
+                    Toast.makeText(MainActivity.this, "Welcome " + test, Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(MainActivity.this, "inValid UserName/Password", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 

@@ -42,7 +42,6 @@ public class DataHandler extends SQLiteOpenHelper {
     }
     public Cursor Login(String userName, String userPassword){
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor c = db.query("user", new String[] {"userName", "userPassword"}, "userName=? and userPassword", new String[] {userName, userPassword}, null, null, null);
-        return c;
+        return db.query("user", new String[] {"userName", "userPassword"}, "userName=? and userPassword=?", new String[] {userName, userPassword}, null, null, null);
     }
 }
